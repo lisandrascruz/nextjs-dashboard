@@ -127,10 +127,11 @@ export async function updateInvoice(id: string, formData: FormData) {
 }
 
 export async function deleteInvoice(id: string) {
-  throw new Error("Delete invoice is currently disabled.");
-
   try {
-    await sql`DELETE FROM invoice_items WHERE invoice_id = ${id}`;
+    await sql`
+      DELETE FROM invoices 
+      WHERE id = ${id}
+    `;
   } catch (error) {
     console.error("Error deleting invoice items:", error);
     return {
